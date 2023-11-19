@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './DocEditor.css'
 import EditDisplay from './EditDisplay.jsx'
 
-const DocEditor = () => {
+const DocEditor = ({resume, updateResume}) => {
 
     const [editDisplaySelect, setEditDisplaySelect] = useState('body');
 
@@ -26,7 +26,7 @@ const DocEditor = () => {
                 <NavBar/>
              </div>
             <div id='edit-div'>
-                <EditDisplay select={editDisplaySelect}/>
+                <EditDisplay select={editDisplaySelect} resume={resume} updateResume={updateResume}/>
             </div>
         </div>
     )
