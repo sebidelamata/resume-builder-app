@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './DocEditor.css'
+import EditDisplay from './EditDisplay.jsx'
 
 const DocEditor = () => {
 
     const [editDisplaySelect, setEditDisplaySelect] = useState('body');
 
     const handleNavBarClick = (e) => {
-        console.log(e.target.id)
         setEditDisplaySelect(e.target.id);
     }
 
@@ -26,7 +26,7 @@ const DocEditor = () => {
                 <NavBar/>
              </div>
             <div id='edit-div'>
-                {editDisplaySelect}
+                <EditDisplay select={editDisplaySelect}/>
             </div>
         </div>
     )
