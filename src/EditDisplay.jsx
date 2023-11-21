@@ -9,6 +9,7 @@ const EditDisplay = ({select, resume, updateResume}) => {
     const [showEducationForm, setShowEducationForm] = useState(false)
     const [showProjectForm, setShowProjectForm] = useState(false)
 
+    const [newGeneralEdits, setNewGeneralEdits] = useState({})
     const [newSkill, setNewSkill] = useState('')
 
     const handleCardClick = (e) => {
@@ -37,6 +38,24 @@ const EditDisplay = ({select, resume, updateResume}) => {
         if(showProjectForm === false){
             setShowProjectForm(true)
         }
+    }
+
+    const handleGeneralEditsSubmit = (e, newGeneralEdits) => {
+        e.preventDefault()
+        let submitForm = e.target
+        let formData = new FormData(submitForm)
+        let updatedNewGeneralEdits = {...newGeneralEdits};
+        formData.forEach((value, key) => {
+            updatedNewGeneralEdits[key] = value
+        })
+
+        setNewGeneralEdits(updatedNewGeneralEdits)
+        
+        let updatedResume = {
+            ...resume,
+            generalEdits: updatedNewGeneralEdits,
+        }
+        updateResume(updatedResume)
     }
 
     const handleSkillSubmit = (e, newSkill) => {
@@ -99,22 +118,23 @@ const EditDisplay = ({select, resume, updateResume}) => {
                             <div id='general-edits' onClick={handleCardClick}>General Edits</div>
                             {
                                 showCard === 'general-edits' &&
-                                <form action="">
+                                <form method="post" onSubmit={(e) => handleGeneralEditsSubmit(e, newGeneralEdits)}>
                                 <label htmlFor="full-name">Full Name</label><br />
-                                <input type="text" id='full-name' name='full-name'/><br />
+                                <input type="text" id='full-name' name='full-name' defaultValue={resume.generalEdits.name} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, name: e.target.value })}/><br />
                                 <label htmlFor="email">Email</label><br />
-                                <input type="email"  id='email' name='email'/><br />
+                                <input type="email"  id='email' name='email' defaultValue={resume.generalEdits.email} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, email: e.target.value })}/><br />
                                 <label htmlFor="github">Github</label><br />
-                                <input type="github" id='github' name='github'/><br />
+                                <input type="github" id='github' name='github' defaultValue={resume.generalEdits.github} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, github: e.target.value })}/><br />
                                 <label htmlFor="linkedin">LinkedIn</label><br />
-                                <input type="linkedin" id='linkedin' name='linkedin'/><br />
+                                <input type="linkedin" id='linkedin' name='linkedin' defaultValue={resume.generalEdits.linkedin} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, linkedin: e.target.value })}/><br />
                                 <label htmlFor="location">Location</label><br />
-                                <input type="location" id='location' name='location'/>
+                                <input type="location" id='location' name='location' defaultValue={resume.generalEdits.location} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, location: e.target.value })}/>
+                                <input type="submit" value={'Submit'}/>
                             </form>
                             }
                         </li>
                         <li className='body-card'>
-                            <div id='skills' onClick={handleCardClick}>Skills</div>
+                            <div id='skills' onClick={(e) => handleCardClick(e, newGeneralEdits)}>Skills</div>
                             {
                                 showCard === 'skills' &&
                                 showSkillForm === false &&
@@ -154,7 +174,17 @@ const EditDisplay = ({select, resume, updateResume}) => {
                                     showExperienceForm === false &&
                                         <div id='work-experience-card'>
                                             <ul id='work-experience-list'>
-                                                <li>Example Work Experience</li>
+                                                {
+                                                    resume.workExperience.map((work) => (
+                                                        <li key={work.id}>
+                                                            <div className='work-experience-card'>
+                                                                <div className='company-name'>{work.companyName}</div>
+                                                                <div className='position'>{work.position}</div>
+                                                            </div>
+                                                            <div></div>
+                                                        </li>
+                                                    ))
+                                                }
                                             </ul>
                                             <div id='add-work-experience'>
                                                 <button onClick={handleExperienceClick}>+ Work Experience</button>
