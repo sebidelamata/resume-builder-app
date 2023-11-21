@@ -73,7 +73,7 @@ function App() {
         id: uuidv4(),
         institution: 'Appalachian State University',
         degree: 'B.A.',
-        concentration: 'Spanish Literatur, Language, and Cultures',
+        concentration: 'Spanish Literature, Language, and Cultures',
         start: '2012-08-01',
         end: '2017-12-01'
       },

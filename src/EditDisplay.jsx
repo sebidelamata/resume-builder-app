@@ -11,6 +11,9 @@ const EditDisplay = ({select, resume, updateResume}) => {
 
     const [newGeneralEdits, setNewGeneralEdits] = useState({})
     const [newSkill, setNewSkill] = useState('')
+    const [newWorkExperience, setNewWorkExperience] = useState([])
+    const [newEducation, setNewEducation] = useState([])
+    const [newProject, setNewProject] = useState([])
 
     const handleCardClick = (e) => {
         setShowCard(e.target.id)
@@ -77,33 +80,104 @@ const EditDisplay = ({select, resume, updateResume}) => {
         }
     }
 
-    const handleExperienceSubmit = (e) => {
+    const handleExperienceSubmit = (e, newWorkExperience) => {
         e.preventDefault();
-        if(showExperienceForm === true){
-            setShowExperienceForm(false)
+        let WorkForm = e.target
+        let formData = new FormData(WorkForm)
+        let updatedNewWorkExperience = {}
+        formData.forEach((value, key) => {
+            updatedNewWorkExperience[key] = value
+        })
+        updatedNewWorkExperience.id = uuidv4()
+        updatedNewWorkExperience = [
+            ...resume.workExperience,
+            updatedNewWorkExperience
+        ]
+        setNewWorkExperience(updatedNewWorkExperience)
+        let updatedResume = {
+            ...resume,
+            workExperience: updatedNewWorkExperience
         }
+        updateResume(updatedResume)
+        setShowExperienceForm(false)
     }
 
-    const handleEducationSubmit = (e) => {
+    const handleEducationSubmit = (e, newEducation) => {
         e.preventDefault();
-        if(showEducationForm === true){
-            setShowEducationForm(false)
+        let EducationForm = e.target
+        let formData = new FormData(EducationForm)
+        let updatedNewEducation = {}
+        formData.forEach((value, key) => {
+            updatedNewEducation[key] = value
+        })
+        updatedNewEducation.id = uuidv4()
+        updatedNewEducation = [
+            ...resume.education,
+            updatedNewEducation
+        ]
+        setNewEducation(updatedNewEducation)
+        let updatedResume = {
+            ...resume,
+            education: updatedNewEducation
         }
+        updateResume(updatedResume)
+        setShowEducationForm(false)
     }
 
-    const handleProjectSubmit = (e) => {
+    const handleProjectSubmit = (e, newProject) => {
         e.preventDefault();
-        if(showProjectForm === true){
-            setShowProjectForm(false)
+        let ProjectForm = e.target
+        let formData = new FormData(ProjectForm)
+        let updatedNewProject = []
+        formData.forEach((value, key) => {
+            updatedNewProject[key] = value
+        })
+        updatedNewProject.id = uuidv4()
+        updatedNewProject = [
+            ...resume.projects,
+            updatedNewProject
+        ]
+        setNewProject(updatedNewProject)
+        let updatedResume = {
+            ...resume,
+            projects: updatedNewProject
         }
+        updateResume(updatedResume)
+        setShowProjectForm(false)
     }
 
     const removeSkill = (skillID) => {
-        console.log(skillID)
         let updatedSkills = resume.skills.filter(skill => skill.id !== skillID)
         let updatedResume = {
             ...resume,
             skills: updatedSkills
+        }
+        updateResume(updatedResume)
+    }
+
+    const removeWork = (workID) => {
+        let updatedWork = resume.workExperience.filter(work => work.id !== workID)
+        let updatedResume = {
+            ...resume,
+            workExperience: updatedWork
+        }
+        updateResume(updatedResume)
+    }
+
+    const removeEducation = (educationID) => {
+        let updatedEducation = resume.education.filter(education => education.id !== educationID)
+        let updatedResume = {
+            ...resume,
+            education: updatedEducation
+        }
+        updateResume(updatedResume)
+    }
+
+    const removeProject = (projectID) => {
+        let updatedProjects = resume.projects.filter(project => project.id !== projectID)
+        let updatedResume = {
+            ...resume,
+            projects: updatedProjects
         }
         updateResume(updatedResume)
     }
@@ -119,18 +193,18 @@ const EditDisplay = ({select, resume, updateResume}) => {
                             {
                                 showCard === 'general-edits' &&
                                 <form method="post" onSubmit={(e) => handleGeneralEditsSubmit(e, newGeneralEdits)}>
-                                <label htmlFor="full-name">Full Name</label><br />
-                                <input type="text" id='full-name' name='full-name' defaultValue={resume.generalEdits.name} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, name: e.target.value })}/><br />
-                                <label htmlFor="email">Email</label><br />
-                                <input type="email"  id='email' name='email' defaultValue={resume.generalEdits.email} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, email: e.target.value })}/><br />
-                                <label htmlFor="github">Github</label><br />
-                                <input type="github" id='github' name='github' defaultValue={resume.generalEdits.github} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, github: e.target.value })}/><br />
-                                <label htmlFor="linkedin">LinkedIn</label><br />
-                                <input type="linkedin" id='linkedin' name='linkedin' defaultValue={resume.generalEdits.linkedin} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, linkedin: e.target.value })}/><br />
-                                <label htmlFor="location">Location</label><br />
-                                <input type="location" id='location' name='location' defaultValue={resume.generalEdits.location} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, location: e.target.value })}/>
-                                <input type="submit" value={'Submit'}/>
-                            </form>
+                                    <label htmlFor="full-name">Full Name</label><br />
+                                    <input type="text" id='full-name' name='full-name' defaultValue={resume.generalEdits.name} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, name: e.target.value })}/><br />
+                                    <label htmlFor="email">Email</label><br />
+                                    <input type="email"  id='email' name='email' defaultValue={resume.generalEdits.email} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, email: e.target.value })}/><br />
+                                    <label htmlFor="github">Github</label><br />
+                                    <input type="github" id='github' name='github' defaultValue={resume.generalEdits.github} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, github: e.target.value })}/><br />
+                                    <label htmlFor="linkedin">LinkedIn</label><br />
+                                    <input type="linkedin" id='linkedin' name='linkedin' defaultValue={resume.generalEdits.linkedin} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, linkedin: e.target.value })}/><br />
+                                    <label htmlFor="location">Location</label><br />
+                                    <input type="location" id='location' name='location' defaultValue={resume.generalEdits.location} onChange={(e) => setNewGeneralEdits({...newGeneralEdits, location: e.target.value })}/>
+                                    <input type="submit" value={'Submit'}/>
+                                </form>
                             }
                         </li>
                         <li className='body-card'>
@@ -178,7 +252,10 @@ const EditDisplay = ({select, resume, updateResume}) => {
                                                     resume.workExperience.map((work) => (
                                                         <li key={work.id}>
                                                             <div className='work-experience-card'>
-                                                                <div className='company-name'>{work.companyName}</div>
+                                                                <div>
+                                                                    <div className='company-name'>{work.companyName}</div>
+                                                                    <div onClick={() => removeWork(work.id)}>&#x2717;</div>
+                                                                </div>
                                                                 <div className='position'>{work.position}</div>
                                                             </div>
                                                             <div></div>
@@ -194,31 +271,33 @@ const EditDisplay = ({select, resume, updateResume}) => {
                             {
                                 showCard === 'work-experience' &&
                                 showExperienceForm === true &&
-                                    <form action="" id='add-experience'>
-                                        <label htmlFor="company-name">Company Name</label>
-                                        <input type="text" id='company-name' name='company-name'/>
+                                    <form method='post' id='add-experience' onSubmit={(e) => handleExperienceSubmit(e, newWorkExperience)}>
+                                        <label htmlFor="companyName">Company Name</label>
+                                        <input type="text" id='companyName' name='companyName' onChange={(e) => setNewWorkExperience(e.target.value)}/>
                                         <label htmlFor="position">Position</label>
-                                        <input type="text" id='position' name='position'/>
-                                        <label htmlFor="start-date">Start Date</label>
+                                        <input type="text" id='position' name='position' onChange={(e) => setNewWorkExperience(e.target.value)}/>
+                                        <label htmlFor="start">Start Date</label>
                                         <input 
                                             type="date" 
-                                            id='start-date' 
-                                            name='start-date' 
+                                            id='start' 
+                                            name='start' 
                                             value={new Date().toISOString().split('T')[0]} 
                                             min='1900-01-01' 
                                             max={new Date().toISOString().split('T')[0]}
+                                            onChange={(e) => setNewWorkExperience(e.target.value)}
                                         />
                                         <input 
                                             type="date" 
-                                            id='end-date' 
-                                            name='end-date' 
+                                            id='end' 
+                                            name='end' 
                                             value={new Date().toISOString().split('T')[0]} 
                                             min='1900-01-01' 
                                             max={new Date().toISOString().split('T')[0]}
+                                            onChange={(e) => setNewWorkExperience(e.target.value)}
                                         />
                                         <label htmlFor="description">Description</label>
-                                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-                                        <input type="submit" value={'+'} onClick={handleExperienceSubmit}/>
+                                        <textarea name="description" id="description" cols="30" rows="10" onChange={(e) => setNewWorkExperience(e.target.value)}></textarea>
+                                        <input type="submit" value={'+'}/>
                                     </form>
                             }
                         </li>
@@ -229,7 +308,20 @@ const EditDisplay = ({select, resume, updateResume}) => {
                                 showEducationForm === false &&
                                     <div>
                                         <ul id='education-card'>
-                                            <li>Example Education</li>
+                                            {
+                                                resume.education.map((education) => (
+                                                    <li key={education.id}>
+                                                        <div className='education-card'>
+                                                            <div className='institution'>{education.institution}</div>
+                                                            <div>
+                                                                <div className='degree'>{education.degree}</div>
+                                                                <div className='concentration'>{education.concentration}</div>
+                                                            </div>
+                                                            <div onClick={() => removeEducation(education.id)}>&#x2717;</div>
+                                                        </div>
+                                                    </li>
+                                                ))
+                                            }
                                         </ul>
                                         <div id='add-education'>
                                             <button onClick={handleEducationClick}>+ Education</button>
@@ -239,11 +331,11 @@ const EditDisplay = ({select, resume, updateResume}) => {
                             {
                                 showCard === 'education' && 
                                 showEducationForm === true &&
-                                    <form action='' id='add-education'>
+                                    <form action='' id='add-education' onSubmit={(e) => handleEducationSubmit(e, newEducation)}>
                                         <label htmlFor="institution" name='institution'>Institution</label>
-                                        <input type="text" id='institution' name='institution'/>
+                                        <input type="text" id='institution' name='institution' onChange={(e) => setNewEducation(e.target.value)}/>
                                         <label htmlFor="degree">Degree</label>
-                                        <select name="degree" id="degree">
+                                        <select name="degree" id="degree" onChange={(e) => setNewEducation(e.target.value)}>
                                             <option value="high-school-diploma">High School Diploma</option>
                                             <option value="associates-degree">Associates Degree</option>
                                             <option value="bootcamp">Coding Bootcamp</option>
@@ -254,7 +346,7 @@ const EditDisplay = ({select, resume, updateResume}) => {
                                             <option value="phd">PhD</option>
                                         </select>
                                         <label htmlFor="concentration">Concentration</label>
-                                        <input type="text" id='concentration' name='concentration'/>
+                                        <input type="text" id='concentration' name='concentration' onChange={(e) => setNewEducation(e.target.value)}/>
                                         <label htmlFor="start-date">Start Date</label>
                                         <input
                                             type="date" 
@@ -263,6 +355,7 @@ const EditDisplay = ({select, resume, updateResume}) => {
                                             value={new Date().toISOString().split('T')[0]} 
                                             min='1900-01-01' 
                                             max={new Date().toISOString().split('T')[0]}
+                                            onChange={(e) => setNewEducation(e.target.value)}
                                         />
                                         <label htmlFor="end-date">End Date</label>
                                         <input
@@ -272,8 +365,9 @@ const EditDisplay = ({select, resume, updateResume}) => {
                                             value={new Date().toISOString().split('T')[0]} 
                                             min='1900-01-01' 
                                             max={new Date().toISOString().split('T')[0]}
+                                            onChange={(e) => setNewEducation(e.target.value)}
                                         />
-                                        <input type="submit" onClick={handleEducationSubmit}/>
+                                        <input type="submit"/>
                                     </form>
                             }
                         </li>
@@ -284,7 +378,18 @@ const EditDisplay = ({select, resume, updateResume}) => {
                                 showProjectForm === false &&
                                     <div>
                                         <ul id='project-card'>
-                                            <li>Example Project</li>
+                                            {
+                                                resume.projects.map((project) => (
+                                                    <li key={project.id}>
+                                                        <div className='project-card'>
+                                                            <div>
+                                                                <div>{project.title}</div>
+                                                                <div onClick={() => removeProject(project.id)}>&#x2717;</div>
+                                                            </div>
+                                                    </div>
+                                                    </li>
+                                                ))
+                                            }
                                         </ul>
                                         <div id='add-project'>
                                             <button onClick={handleProjectClick}>+ Project</button>
@@ -294,12 +399,12 @@ const EditDisplay = ({select, resume, updateResume}) => {
                             {
                                 showCard === 'projects' &&
                                 showProjectForm === true &&
-                                    <form>
+                                    <form className='new-project-form' onSubmit={(e) => handleProjectSubmit(e, newProject)}>
                                         <label htmlFor="title">Project Title</label>
-                                        <input type="text" id='title' name='title'/>
+                                        <input type="text" id='title' name='title' onChange={(e) => setNewProject(e.target.value)}/>
                                         <label htmlFor="description">Description</label>
-                                        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-                                        <input type="submit" onClick={handleProjectSubmit}/>
+                                        <textarea name="description" id="description" cols="30" rows="10" onChange={(e) => setNewProject(e.target.value)}></textarea>
+                                        <input type="submit"/>
                                     </form>
                             }
                         </li>
