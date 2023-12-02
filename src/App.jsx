@@ -33,6 +33,7 @@ function App() {
         companyName: 'S&P Global Ratings',
         position: 'Associate, Quantitative Analytics',
         start: '2021-03-08',
+        end: '',
         description: '● Owner of two models used to generate forex depreciation and interest rate risks for client transactions.\n● Contributing Author - A Deep Dive into Crypto Valuation, 10 Nov, 2022 - S&P Global.\n● Contributing Author - U.S. Interest Rates in a Post-LIBOR World, 21 Sept, 2022 - S&P Global Ratings'
       },
       {
