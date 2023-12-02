@@ -61,6 +61,8 @@ const EditDisplay = ({select, resume, updateResume}) => {
         title: '',
         description: ''
     })
+    const [previewFont, setPreviewFont] = useState('')
+    const [previewBullets, setPreviewBullets] = useState('')
 
     const handleCardClick = (e) => {
         setShowCard(e.target.id)
@@ -381,6 +383,24 @@ const EditDisplay = ({select, resume, updateResume}) => {
         let updatedResume = {
             ...resume,
             projects: updatedProjects
+        }
+        updateResume(updatedResume)
+    }
+
+    const changeFont = (e) => {
+        setPreviewFont(e.target.value)
+        let updatedResume = {
+            ...resume,
+            font: e.target.value
+        }
+        updateResume(updatedResume)
+    }
+
+    const changeBullets = (e) => {
+        setPreviewBullets(e.target.value)
+        let updatedResume = {
+            ...resume,
+            bullets: e.target.value
         }
         updateResume(updatedResume)
     }
@@ -776,6 +796,29 @@ const EditDisplay = ({select, resume, updateResume}) => {
                         </li>
                     </ul>
                 </>
+             }
+             {
+                select === 'edit-styles' &&
+                    <div>
+                        <div id='edit-styles-title'>Edit Styles and Format</div>
+                        <form method="post">
+                            <label htmlFor="font">Font</label><br></br>
+                            <select name="font" id="font-select" value={previewFont} onChange={(e) => changeFont(e)}>
+                                <option value="Times New Roman">Times New Roman</option>
+                                <option value="Calibri">Calibri</option>
+                                <option value="Tahoma">Tahoma</option>
+                                <option value="Arial">Arial</option>
+                                <option value="Helvetica">Helvetica</option>
+                            </select><br></br>
+                            <label htmlFor="bullets">Bullet Points</label><br></br>
+                            <select name="bullets" id="bullets" value={previewBullets} onChange={(e) => changeBullets(e)}>
+                                <option value="none">None</option>
+                                <option value="disc">Bullets</option>
+                                <option value="circle">Circles</option>
+                                <option value="square">Squares</option>
+                            </select>
+                        </form>
+                    </div>
              }
         </section>
     )

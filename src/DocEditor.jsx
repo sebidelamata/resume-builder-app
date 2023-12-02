@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './DocEditor.css'
 import EditDisplay from './EditDisplay.jsx'
 
 const DocEditor = ({resume, updateResume}) => {

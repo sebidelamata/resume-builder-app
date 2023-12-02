@@ -1,10 +1,14 @@
 import { useState } from 'react'
-import './DocPreviewer.css'
 
 const DocPreviewer = ({resume, updateResume}) => {
-    console.log(resume.skills.length)
+    
+    const previewStyles = {
+        fontFamily: resume.font,
+        listStyle: resume.bullets
+    }
+
     return (
-        <div id='doc-previewer'>
+        <div id='doc-previewer' style={previewStyles}>
             <div id='paper'>
                 <div id='general-edits-preview'>
                     <div id='full-name-preview'>
@@ -24,7 +28,7 @@ const DocPreviewer = ({resume, updateResume}) => {
                     resume.skills.length !== 0 &&
                         <div className='resume-section' id='skills-preview' >
                             <div className='section-title'><strong>Skills</strong></div>
-                            <ul className='preview-list'>
+                            <ul className='preview-list' style={{listStyle: 'inherit'}}>
                                 {
                                     resume.skills.map((skill) => (
                                         <li key={skill.id}>
@@ -40,7 +44,7 @@ const DocPreviewer = ({resume, updateResume}) => {
                     resume.workExperience.length !== 0 &&
                         <div className='resume-section' id='work-experience-preview'>
                             <div className='section-title'><strong>Experience</strong></div>
-                            <ul className='preview-list'>
+                            <ul className='preview-list' style={{listStyle: 'inherit'}}>
                                 {
                                     resume.workExperience.map((workExperience) => (
                                         <li key={workExperience.id}>
@@ -79,7 +83,7 @@ const DocPreviewer = ({resume, updateResume}) => {
                     resume.projects.length !== 0 &&
                         <div className='resume-section' id='projects-preview'>
                             <div className='section-title'><strong>Projects</strong></div>
-                            <ul className='preview-list'>
+                            <ul className='preview-list' style={{listStyle: 'inherit'}}>
                                 {
                                     resume.projects.map((project) => (
                                         <li key={project.id}>
@@ -101,7 +105,7 @@ const DocPreviewer = ({resume, updateResume}) => {
                     resume.education.length !== 0 &&
                         <div className='resume-section' id='education-preview'>
                             <div className='section-title'><strong>Education</strong></div>
-                            <ul className='preview-list'>
+                            <ul className='preview-list' style={{listStyle: 'inherit'}}>
                                 {
                                     resume.education.map((education) => (
                                         <li key={education.id}>

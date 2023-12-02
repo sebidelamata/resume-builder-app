@@ -2,7 +2,6 @@ import { useState } from 'react'
 import DocEditor from './DocEditor.jsx'
 import DocPreviewer from './DocPreviewer.jsx'
 import { v4 as uuidv4 } from 'uuid';
-import './App.css'
 
 function App() {
 
@@ -105,7 +104,9 @@ function App() {
         title: 'Carolina Fintech Hub 2018 Fall University Hackathon',
         description: ' Team Member, Appalachian State University, University Finalist Oct 2018 Developed an Android/IOs mobile application using Python aimed to help Millennials invest more in sustainable and socially conscious Mortgage Funds and ETFs.'
       }
-    ]
+    ],
+    font: 'Times New Roman',
+    bullets: 'none'
   })
 
   const updateResume = (newResume) => {
