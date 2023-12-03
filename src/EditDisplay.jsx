@@ -411,20 +411,116 @@ const EditDisplay = ({select, resume, updateResume}) => {
 
         let printWindow = window.open('', '_blank')
 
-        // try {
-        //     let stylesheetFetch = await fetch('./index.css')
-        //     let stylesheetText = await stylesheetFetch.text()
-            // console.log(stylesheetText)
-            printWindow.document.write(`<html><head><style>#paper{list-style: ${resume.bullets}; font-family: ${resume.font};}</style><title>Print Resume</title></head><body>`)
+            printWindow.document.write(`<html>
+                <head>
+                    <style>
+                        #paper{
+                            list-style: ${resume.bullets}; 
+                            font-family: ${resume.font};
+                            background-color: white;
+                            color: black;
+                            padding: 1em;
+                            overflow: hidden;
+                            overflow-wrap: break-word;
+                        }
+                        
+                        #general-edits-preview{
+                            display: grid;
+                            grid-template-columns: auto;
+                            grid-template-rows: repeat(3, max-content);
+                        }
+                        
+                        #full-name-preview{
+                            justify-content: center;
+                            align-items: center;
+                            text-align: center;
+                            font-size: large;
+                        }
+                        
+                        #gen-edits-row-2,
+                        #gen-edits-row-3{
+                            display: grid;
+                            justify-content: end;
+                            align-items:end;
+                            grid-template-columns: 1fr 1fr;
+                            font-size: x-small;
+                        }
+                        
+                        #email,
+                        #linkedin{
+                            text-align: left;
+                        }
+                        
+                        #github,
+                        #location{
+                            text-align: right;
+                        }
+                        
+                        .section-title{
+                            text-align: center;
+                            height: max-content;
+                        }
+                        
+                        
+                        #preview-skill-list{
+                            display: flex;
+                            padding: 1em;
+                            flex-wrap: wrap;
+                            gap: 2.5em;
+                            font-size: small;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                        
+                        #preview-work-list,
+                        #preview-projects-list,
+                        #preview-education-list{
+                            padding: 1em;
+                            display: grid;
+                            gap: 1em;
+                        }
+                        
+                        .work-experience-row-1,
+                        .education-row-1{
+                            display: grid;
+                            grid-template-columns: auto auto;
+                        }
+                        
+                        .resume-subsection-dates{
+                            display: grid;
+                            grid-template-columns: auto auto;
+                            justify-content: right;
+                            font-size: small;
+                            gap: 0.25em;
+                        }
+                        
+                        .resume-subsection-dates-col-2{
+                            display: grid;
+                            grid-template-columns: auto auto;
+                            gap: 0.25em;
+                        }
+                        
+                        .education-body{
+                            display: grid;
+                            grid-template-columns: auto auto;
+                            font-size: smaller;
+                        
+                        .degree-preview{
+                            text-align: left;
+                        }
+                        
+                        .concentration-preview{
+                            text-align: right;
+                        }
+                    }
+                </style>
+                <title>Print Resume</title></head><body>`)
             printWindow.document.body.appendChild(clonedPreview)
             printWindow.document.write('</body></html>')
             printWindow.document.body.style.height = '11in'
             printWindow.document.body.style.width = '8.5in'
             printWindow.document.close()
             printWindow.print()
-        // } catch (error) {
-        //     console.error(error)
-        // }
     }
 
     return (

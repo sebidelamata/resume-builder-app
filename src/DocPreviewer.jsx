@@ -39,7 +39,7 @@ const DocPreviewer = ({resume, updateResume}) => {
                     resume.skills.length !== 0 &&
                         <div className='resume-section' id='skills-preview' >
                             <div className='section-title'><strong>Skills</strong></div>
-                            <ul className='preview-list' style={{listStyle: 'inherit'}}>
+                            <ul className='preview-list' id='preview-skill-list' style={{listStyle: 'inherit'}}>
                                 {
                                     resume.skills.map((skill) => (
                                         <li key={skill.id}>
@@ -55,29 +55,31 @@ const DocPreviewer = ({resume, updateResume}) => {
                     resume.workExperience.length !== 0 &&
                         <div className='resume-section' id='work-experience-preview'>
                             <div className='section-title'><strong>Experience</strong></div>
-                            <ul className='preview-list' style={{listStyle: 'inherit'}}>
+                            <ul className='preview-list' id='preview-work-list' style={{listStyle: 'inherit'}}>
                                 {
                                     resume.workExperience.map((workExperience) => (
                                         <li key={workExperience.id}>
-                                            <div className='resume-subsection-title work-experience-title'>
-                                                <strong>
-                                                    {workExperience.companyName}
-                                                </strong>
-                                            </div>
-                                            <div className='resume-subsection-dates work-experience-dates'>
-                                                {
-                                                    workExperience.start
-                                                }{
-                                                    workExperience.end !== undefined && workExperience.end !== ''
-                                                    ? <div>
-                                                        <div> - </div>
-                                                        <div>{workExperience.end}</div>
-                                                    </div> 
-                                                    : <div>
-                                                        <div> - </div>
-                                                        <div>Present</div>
-                                                     </div>   
-                                                }
+                                            <div className='work-experience-row-1'>
+                                                <div className='resume-subsection-title work-experience-title'>
+                                                    <strong>
+                                                        {workExperience.companyName}
+                                                    </strong>
+                                                </div>
+                                                <div className='resume-subsection-dates work-experience-dates'>
+                                                    {
+                                                        workExperience.start
+                                                    }{
+                                                        workExperience.end !== undefined && workExperience.end !== ''
+                                                        ? <div className='resume-subsection-dates-col-2'>
+                                                            <div> - </div>
+                                                            <div>{workExperience.end}</div>
+                                                        </div> 
+                                                        : <div className='resume-subsection-dates-col-2'>
+                                                            <div> - </div>
+                                                            <div>Present</div>
+                                                        </div>   
+                                                    }
+                                                </div>
                                             </div>
                                             <div className='resume-subsection-body work-body'>
                                                 {workExperience.description}
@@ -92,7 +94,7 @@ const DocPreviewer = ({resume, updateResume}) => {
                     resume.projects.length !== 0 &&
                         <div className='resume-section' id='projects-preview'>
                             <div className='section-title'><strong>Projects</strong></div>
-                            <ul className='preview-list' style={{listStyle: 'inherit'}}>
+                            <ul className='preview-list' id='preview-projects-list' style={{listStyle: 'inherit'}}>
                                 {
                                     resume.projects.map((project) => (
                                         <li key={project.id}>
@@ -114,29 +116,31 @@ const DocPreviewer = ({resume, updateResume}) => {
                     resume.education.length !== 0 &&
                         <div className='resume-section' id='education-preview'>
                             <div className='section-title'><strong>Education</strong></div>
-                            <ul className='preview-list' style={{listStyle: 'inherit'}}>
+                            <ul className='preview-list' id='preview-education-list' style={{listStyle: 'inherit'}}>
                                 {
                                     resume.education.map((education) => (
                                         <li key={education.id}>
-                                            <div className='resume-subsection-title education-institution'>
-                                                <strong>
-                                                    {education.institution}
-                                                </strong>
-                                            </div>
-                                            <div className='resume-subsection-dates education-dates'>
-                                                {
-                                                    education.start
-                                                }{
-                                                    education.end !== undefined && education.end !== ''
-                                                    ? <div>
-                                                        <div> - </div>
-                                                        <div>{education.end}</div>
-                                                    </div> 
-                                                    : <div>
-                                                        <div> - </div>
-                                                        <div>Present</div>
-                                                    </div>   
-                                                }
+                                            <div className='education-row-1'>
+                                                <div className='resume-subsection-title education-institution'>
+                                                    <strong>
+                                                        {education.institution}
+                                                    </strong>
+                                                </div>
+                                                <div className='resume-subsection-dates education-dates'>
+                                                    {
+                                                        education.start
+                                                    }{
+                                                        education.end !== undefined && education.end !== ''
+                                                        ? <div className='resume-subsection-dates-col-2'>
+                                                            <div> - </div>
+                                                            <div>{education.end}</div>
+                                                        </div> 
+                                                        : <div className='resume-subsection-dates-col-2'>
+                                                            <div> - </div>
+                                                            <div>Present</div>
+                                                        </div>   
+                                                    }
+                                                </div>
                                             </div>
                                             <div className='resume-subsection-body education-body'>
                                                 <div className='degree-preview'>{education.degree}</div>
