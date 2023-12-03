@@ -79,6 +79,14 @@ body:not(#doc-previewer) ul {
   padding: 2em;
 }
 
+.edit-display{
+  width: 80%;
+}
+
+#body{
+  width: 80%;
+}
+
 #save-delete-bar{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -210,6 +218,7 @@ button, input[type='submit']{
   padding: 1em;
   display: grid;
   gap: 0.5em;
+  width: 80%;
 }
 
 .body-card{
@@ -277,4 +286,11 @@ select{
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 1em;
+}
+
+@media (min-width: 800px){
+  #doc-components{
+    display: grid;
+    grid-template-columns: auto auto;
+  }
 }

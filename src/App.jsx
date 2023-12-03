@@ -114,10 +114,10 @@ function App() {
   }
 
   return (
-    <>
-    <DocEditor resume={resume} updateResume={updateResume}/>
-    <DocPreviewer resume={resume} updateResume={updateResume}/>
-    </>
+    <div id='doc-components'>
+      <DocEditor resume={resume} updateResume={updateResume}/>
+      <DocPreviewer resume={resume} updateResume={updateResume}/>
+    </div>
   )
 }
 
