@@ -7,12 +7,23 @@
   --color-2: #3e333b;
   --color-3: #2e4446;
   --color-4: #23777f;
+  --color-5: #823030;
+  --color-6: #93497f;
+  --color-7: #3fafb9;
+  --color-8: #0a7f8a;
   --gradient-1: linear-gradient(
     -45deg,
     var(--color-1),
     var(--color-2),
     var(--color-3),
     var(--color-4)
+  );
+  --gradient-2: linear-gradient(
+    45deg,
+    var(--color-5),
+    var(--color-6),
+    var(--color-7),
+    var(--color-8)
   );
 
   background: var(--gradient-1);
@@ -30,6 +41,48 @@
 
 body:not(#doc-previewer) ul {
   list-style: none;
+}
+
+#app-title{
+  text-align: center;
+  font-size: x-large;
+}
+
+#doc-editor{
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+#nav-div{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+#editor-selector{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 1em;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#save-delete{
+  display: grid;
+}
+
+#edit-div{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+}
+
+#save-delete-bar{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2em;
 }
 
 @keyframes backgroundAnimate {
@@ -132,6 +185,7 @@ body:not(#doc-previewer) ul {
   display: grid;
   grid-template-columns: auto auto;
   font-size: smaller;
+}
 
 .degree-preview{
   text-align: left;
@@ -139,4 +193,88 @@ body:not(#doc-previewer) ul {
 
 .concentration-preview{
   text-align: right;
+}
+
+button, input[type='submit']{
+  display: grid;
+  padding: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+  border-radius: 20%;
+  background: var(--gradient-2);
+  background-size: 400% 400%;
+  animation: backgroundAnimate 10s ease infinite;
+}
+
+.body-list{
+  padding: 1em;
+  display: grid;
+  gap: 0.5em;
+}
+
+.body-card{
+  padding: 1em;
+  border: white;
+  border-style: solid;
+  border-radius: 2em;
+  display: grid;
+  gap: 3em;
+}
+
+.body-card-list-title{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.add-item-button{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-delete-body-item{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#skills-list{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25em;
+}
+
+form{
+  display: grid;
+}
+
+input,
+select{
+  padding: 0.7em;
+  border-radius: 1em;
+  border-style: solid;
+  border-color: white;
+}
+
+#edit-styles-container{
+  display: grid;
+  gap: 1em;
+}
+
+#edit-styles-title{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: large;
+}
+
+#edit-styles-form{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 1em;
 }
