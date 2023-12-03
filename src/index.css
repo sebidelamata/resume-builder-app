@@ -44,8 +44,39 @@ body:not(#doc-previewer) ul {
   }
 }
 
-#doc-previewer{
+#paper{
   background-color: white;
   color: black;
   padding: 1em;
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+
+#general-edits-preview{
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(3, max-content);
+}
+
+#full-name-preview{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: large;
+}
+
+#gen-edits-row-2{
+  display: grid;
+  justify-content: end;
+  align-items:end;
+  grid-template-columns: 1fr 1fr;
+  font-size: x-small;
+}
+
+#email{
+  text-align: left;
+}
+
+#github{
+  text-align: right;
 }

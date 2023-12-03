@@ -9,8 +9,8 @@ function App() {
     generalEdits: {
       name: 'Miguel Sebastian de la Mata',
       email: 'miguel.sebastian.de.la.mata@gmail.com',
-      github: 'https://github.com/sebidelamata',
-      linkedin: 'https://www.linkedin.com/in/miguel-sebasti%C3%A1n-de-la-mata/',
+      github: 'github.com/sebidelamata',
+      linkedin: 'linkedin.com/in/miguel-sebasti%C3%A1n-de-la-mata/',
       location: 'USA'
     },
     skills: [

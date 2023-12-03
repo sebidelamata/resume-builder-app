@@ -7,6 +7,7 @@ import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <div className='title'><strong>Resume Builder</strong></div>
     <App/>
   </React.StrictMode>,
 )

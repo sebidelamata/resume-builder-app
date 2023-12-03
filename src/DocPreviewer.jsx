@@ -16,13 +16,24 @@ const DocPreviewer = ({resume, updateResume}) => {
                             {resume.generalEdits.name}
                         </strong>
                     </div>
+                    <div id='gen-edits-row-2'>
                     {   
                         Object.keys(resume.generalEdits).map((key) => {
-                            if(key !== 'name'){
-                                return <div key={key}>{resume.generalEdits[key]}</div>
+                            if(key === 'email' || key === 'github'){
+                                return <div key={key} id={key}>{resume.generalEdits[key]}</div>
                             }
                         })
                     }
+                    </div>
+                    <div id='gen-edits-row-3'>
+                    {   
+                        Object.keys(resume.generalEdits).map((key) => {
+                            if(key === 'linkedin' || key === 'location'){
+                                return <div key={key} id={key}>{resume.generalEdits[key]}</div>
+                            }
+                        })
+                    }
+                    </div>
                 </div>
                 {
                     resume.skills.length !== 0 &&
@@ -57,17 +68,15 @@ const DocPreviewer = ({resume, updateResume}) => {
                                                 {
                                                     workExperience.start
                                                 }{
-                                                    workExperience.end !== undefined &&
-                                                    <div>
+                                                    workExperience.end !== undefined && workExperience.end !== ''
+                                                    ? <div>
                                                         <div> - </div>
                                                         <div>{workExperience.end}</div>
-                                                    </div>   
-                                                }{
-                                                    workExperience.end === undefined &&
-                                                        <div>
-                                                            <div> - </div>
-                                                            <div>Present</div>
-                                                        </div>
+                                                    </div> 
+                                                    : <div>
+                                                        <div> - </div>
+                                                        <div>Present</div>
+                                                     </div>   
                                                 }
                                             </div>
                                             <div className='resume-subsection-body work-body'>
@@ -118,17 +127,15 @@ const DocPreviewer = ({resume, updateResume}) => {
                                                 {
                                                     education.start
                                                 }{
-                                                    education.end !== undefined &&
-                                                    <div>
+                                                    education.end !== undefined && education.end !== ''
+                                                    ? <div>
                                                         <div> - </div>
                                                         <div>{education.end}</div>
+                                                    </div> 
+                                                    : <div>
+                                                        <div> - </div>
+                                                        <div>Present</div>
                                                     </div>   
-                                                }{
-                                                    education.end === undefined &&
-                                                        <div>
-                                                            <div> - </div>
-                                                            <div>Present</div>
-                                                        </div>
                                                 }
                                             </div>
                                             <div className='resume-subsection-body education-body'>

@@ -405,6 +405,28 @@ const EditDisplay = ({select, resume, updateResume}) => {
         updateResume(updatedResume)
     }
 
+    const printResume = () => {
+        let previewDoc = document.querySelector('#paper')
+        let clonedPreview = previewDoc.cloneNode(true)
+
+        let printWindow = window.open('', '_blank')
+
+        // try {
+        //     let stylesheetFetch = await fetch('./index.css')
+        //     let stylesheetText = await stylesheetFetch.text()
+            // console.log(stylesheetText)
+            printWindow.document.write(`<html><head><style>#paper{list-style: ${resume.bullets}; font-family: ${resume.font};}</style><title>Print Resume</title></head><body>`)
+            printWindow.document.body.appendChild(clonedPreview)
+            printWindow.document.write('</body></html>')
+            printWindow.document.body.style.height = '11in'
+            printWindow.document.body.style.width = '8.5in'
+            printWindow.document.close()
+            printWindow.print()
+        // } catch (error) {
+        //     console.error(error)
+        // }
+    }
+
     return (
         <section className='edit-display' id={select}>
             {
@@ -819,6 +841,15 @@ const EditDisplay = ({select, resume, updateResume}) => {
                             </select>
                         </form>
                     </div>
+             }
+             {
+                select === 'save-delete' &&
+                <div>
+                    <div id='print-delete-title'>Print Document, Load Sample, Clear Sample</div>
+                    <button onClick={() => printResume()}>Print</button>
+                    <button>Delete</button>
+                    <button>Load Sample Resume</button>
+                </div>
              }
         </section>
     )
