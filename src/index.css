@@ -18,13 +18,6 @@
     var(--color-3),
     var(--color-4)
   );
-  --gradient-2: linear-gradient(
-    45deg,
-    var(--color-5),
-    var(--color-6),
-    var(--color-7),
-    var(--color-8)
-  );
 
   background: var(--gradient-1);
   background-size: 400% 400%;
@@ -66,6 +59,19 @@ body:not(#doc-previewer) ul {
   justify-content: center;
   align-items: center;
   text-align: center;
+  gap: 1em;
+}
+
+#editor-selector>li{
+  border-radius: 1em;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
 }
 
 #save-delete{
@@ -80,11 +86,9 @@ body:not(#doc-previewer) ul {
 }
 
 .edit-display{
-  width: 80%;
-}
-
-#body{
-  width: 80%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 #save-delete-bar{
@@ -209,16 +213,15 @@ button, input[type='submit']{
   padding-left: 2em;
   padding-right: 2em;
   border-radius: 20%;
-  background: var(--gradient-2);
-  background-size: 400% 400%;
-  animation: backgroundAnimate 10s ease infinite;
+  color: white;
 }
 
 .body-list{
-  padding: 1em;
   display: grid;
+  justify-content: center;
+  align-items: center;
   gap: 0.5em;
-  width: 80%;
+  padding: 0;
 }
 
 .body-card{
@@ -251,10 +254,14 @@ button, input[type='submit']{
   text-align: center;
 }
 
-#skills-list{
+#skills-list,
+#work-experience-list,
+#education-card,
+#project-card{
   display: flex;
   flex-wrap: wrap;
   gap: 1.25em;
+  padding: 0;
 }
 
 form{
@@ -292,5 +299,8 @@ select{
   #doc-components{
     display: grid;
     grid-template-columns: auto auto;
+  }
+  #doc-editor{
+    height: 100vh;
   }
 }

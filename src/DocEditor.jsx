@@ -12,7 +12,7 @@ const DocEditor = ({resume, updateResume}) => {
     const NavBar = () => {
         return(
             <ul id='editor-selector'>
-                    <li id='save-delete' onClick={handleNavBarClick}>Save, Load Example, Delete</li>
+                    <li id='save-delete' onClick={handleNavBarClick}>Save | Example | Delete</li>
                     <li id='body' onClick={handleNavBarClick}>Body</li>
                     <li id='edit-styles' onClick={handleNavBarClick}>Customize Format</li>
             </ul> 
