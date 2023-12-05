@@ -22,6 +22,7 @@
   background: var(--gradient-1);
   background-size: 400% 400%;
   animation: backgroundAnimate 10s ease infinite;
+  -webkit-animation: backgroundAnimate 10s ease infinite;
   color-scheme: light dark;
   color: var(--font-color);
 
@@ -98,6 +99,18 @@ body:not(#doc-previewer) ul {
 }
 
 @keyframes backgroundAnimate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-webkit-keyframes backgroundAnimate {
   0% {
     background-position: 0% 50%;
   }
@@ -214,6 +227,7 @@ button, input[type='submit']{
   padding-right: 2em;
   border-radius: 20%;
   color: white;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .body-list{
@@ -302,5 +316,13 @@ select{
   }
   #doc-editor{
     height: 100vh;
+  }
+
+  button:hover, 
+  input[type='submit']:hover,
+  button:focus, 
+  input[type='submit']:focus{
+    background-color: var(--color-4);
+    box-shadow: 0 0 5px var(--color-7);
   }
 }
